@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
-import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-*cfu2_b(uoj+x)=_0-3r^&z(7o#c9!_!*8w*jc00weyr4b9c7a"
+SECRET_KEY = "django-insecure-pu#q*&yxudyy(!a-dfwlt3q&jqcxv=totu^y=j%qq*w4csn9hx"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -41,10 +40,11 @@ INSTALLED_APPS = [
     # app
     "core.apps.CoreConfig",
     "user.apps.UserConfig",
-    #3rd app
+    "recipe.apps.RecipeConfig",
+    # 3rd app
     "rest_framework",
     "drf_spectacular",
-
+    "rest_framework.authtoken",
 ]
 
 MIDDLEWARE = [
@@ -81,21 +81,22 @@ WSGI_APPLICATION = "app.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.sqlite3",
-#         "NAME": BASE_DIR / "db.sqlite3",
-#     }
-# }
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "HOST": os.getenv("DB_HOST"),
-        "NAME": os.getenv("DB_NAME"),
-        "USER": os.getenv("DB_USER"),
-        "PASSWORD"  : os.getenv("DB_PASSWORD"),
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
     }
 }
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql",
+#         "HOST": os.getenv("DB_HOST"),
+#         "NAME": os.getenv("DB_NAME"),
+#         "USER": os.getenv("DB_USER"),
+#         "PASSWORD"  : os.getenv("DB_PASSWORD"),
+#     }
+# }
+
 
 
 # Password validation
@@ -143,4 +144,10 @@ AUTH_USER_MODEL = "core.User"
 
 REST_FRAMEWORK = {
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
+SPECTACULAR_SETTINGS = {
+    # Mainly used for tag extraction, where paths like '/api/v1/albums' with
+    # a SCHEMA_PATH_PREFIX regex '/api/v[0-9]' would yield the tag 'albums'.
+    # "SCHEMA_PATH_PREFIX": "/api/[a-zA-Z\-]*",
+    "SCHEMA_PATH_PREFIX": "/api",
 }
