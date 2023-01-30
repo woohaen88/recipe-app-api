@@ -6,7 +6,7 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
 
-from .models import Recipe
+from .models import Recipe, Tag, Ingredient
 
 
 @admin.register(get_user_model())
@@ -59,4 +59,14 @@ class UserAdmin(BaseUserAdmin):
 
 @admin.register(Recipe)
 class RecipeAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Tag)
+class TagAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Ingredient)
+class IngredientAdmin(admin.ModelAdmin):
     pass
