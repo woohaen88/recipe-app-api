@@ -1,8 +1,8 @@
-version: '3.9'
+version: "3.9"
 
 services:
   app:
-    build: 
+    build:
       context: .
     restart: always
     volumes:
@@ -13,7 +13,7 @@ services:
       - DB_USER=${DB_USER}
       - DB_PASS=${DB_PASS}
       - SECRET_KEY=${DJANGO_SECRET_KEY}
-      - ALLOWED_HOST=${DJANGO_ALLOWED_HOSTS}
+      - ALLOWED_HOSTS=${DJANGO_ALLOWED_HOSTS}
     depends_on:
       - db
 
@@ -39,5 +39,5 @@ services:
       - static-data:/vol/static
 
 volumes:
-  static-data:
   postgres-data:
+  static-data:
