@@ -1,9 +1,7 @@
 FROM nginx:latest
 LABEL maintainer="woohaen88@gmail.com"
 
-COPY ./default.conf.tpl /etc/nginx/default.conf.tpl
-# COPY ./uwsgi_params /etc/nginx/uwsgi_params
-COPY ./run.sh /run.sh
+COPY ./nginx.conf /etc/nginx/nginx.conf
 
 ENV LISTEN_PORT=80
 ENV APP_HOST=app
@@ -13,10 +11,7 @@ USER root
 
 RUN mkdir -p /vol/static && \
     chmod 755 /vol/static && \
-    chmod +x /run.sh &&\
-    sh /run.sh
-
-
+    chmod +x /run.sh
 
 VOLUME /vol/static
 
