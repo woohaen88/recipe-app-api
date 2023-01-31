@@ -89,21 +89,21 @@ WSGI_APPLICATION = "app.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
-}
 # DATABASES = {
 #     "default": {
-#         "ENGINE": "django.db.backends.postgresql",
-#         "HOST": os.getenv("DB_HOST"),
-#         "NAME": os.getenv("DB_NAME"),
-#         "USER": os.getenv("DB_USER"),
-#         "PASSWORD"  : os.getenv("DB_PASSWORD"),
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": BASE_DIR / "db.sqlite3",
 #     }
 # }
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "HOST": os.getenv("DB_HOST"),
+        "NAME": os.getenv("DB_NAME"),
+        "USER": os.getenv("DB_USER"),
+        "PASSWORD"  : os.getenv("DB_PASS"),
+    }
+}
 
 
 # Password validation
@@ -142,20 +142,20 @@ USE_TZ = True
 
 # Docker run 환경
 ##################################
-# STATIC_URL = "/static/static/"
-# MEDIA_URL = "/static/media/"
-#
-# MEDIA_ROOT = "/vol/web/media"
-# STATIC_ROOT = "/vol/web/static"
+STATIC_URL = "/static/static/"
+MEDIA_URL = "/static/media/"
+
+MEDIA_ROOT = "/vol/web/media"
+STATIC_ROOT = "/vol/web/static"
 ##################################
 
 # localhost
 ##################################
-STATIC_URL = "/static/static/"
-MEDIA_URL = "/static/media/"
+# STATIC_URL = "/static/static/"
+# MEDIA_URL = "/static/media/"
 
-MEDIA_ROOT = os.path.join(BASE_DIR, "vol/web/media")
-STATIC_ROOT = os.path.join(BASE_DIR, "vol/web/static")
+# MEDIA_ROOT = os.path.join(BASE_DIR, "vol/web/media")
+# STATIC_ROOT = os.path.join(BASE_DIR, "vol/web/static")
 ##################################
 
 # Default primary key field type
