@@ -101,7 +101,7 @@ DATABASES = {
         "HOST": os.getenv("DB_HOST"),
         "NAME": os.getenv("DB_NAME"),
         "USER": os.getenv("DB_USER"),
-        "PASSWORD"  : os.getenv("DB_PASS"),
+        "PASSWORD": os.getenv("DB_PASS"),
     }
 }
 
@@ -143,10 +143,11 @@ USE_TZ = True
 # Docker run 환경
 ##################################
 STATIC_URL = "/static/static/"
-MEDIA_URL = "/static/media/"
-
-MEDIA_ROOT = "/vol/web/media"
 STATIC_ROOT = "/vol/web/static"
+
+MEDIA_URL = "/static/media/"
+MEDIA_ROOT = "/vol/web/media"
+
 ##################################
 
 # localhost

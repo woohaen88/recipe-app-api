@@ -5,6 +5,8 @@ services:
     build:
       context: .
     restart: always
+    networks:
+      - appnetwork
     volumes:
       - static-data:/vol/web
     environment:
@@ -15,7 +17,7 @@ services:
       - SECRET_KEY=${DJANGO_SECRET_KEY}
       - ALLOWED_HOSTS=${DJANGO_ALLOWED_HOSTS}
     depends_on:
-      - db
+      - db    
 
   db:
     image: postgres:13-alpine
@@ -26,6 +28,8 @@ services:
       - POSTGRES_DB=${DB_NAME}
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASS}
+    networks:
+      - appnetwork
 
   proxy:
     build:
@@ -34,10 +38,15 @@ services:
     depends_on:
       - app
     ports:
-      - 80:8000
+      - 80:80
     volumes:
       - static-data:/vol/static
+    networks:
+      - appnetwork
 
 volumes:
   postgres-data:
   static-data:
+
+networks:
+  appnetwork:
