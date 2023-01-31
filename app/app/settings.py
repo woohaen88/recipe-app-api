@@ -28,10 +28,13 @@ DEBUG = bool(int(os.getenv("DEBUG", 0)))
 
 
 ALLOWED_HOSTS = [
-    "ec2-43-201-28-198.ap-northeast-2.compute.amazonaws.com",
-    "http://ec2-43-201-28-198.ap-northeast-2.compute.amazonaws.com",
-    "https://ec2-43-201-28-198.ap-northeast-2.compute.amazonaws.com",
+    "*",
 ]
+# ALLOWED_HOSTS = [
+#     "ec2-43-201-28-198.ap-northeast-2.compute.amazonaws.com",
+#     "http://ec2-43-201-28-198.ap-northeast-2.compute.amazonaws.com",
+#     "https://ec2-43-201-28-198.ap-northeast-2.compute.amazonaws.com",
+# ]
 # ALLOWED_HOSTS.extend(
 #     filter(
 #         None,
