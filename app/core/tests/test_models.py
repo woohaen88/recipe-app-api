@@ -102,4 +102,3 @@ class ModelTests(TestCase):
             file_path = file_path.replace("\\", "/")
 
         self.assertEqual(file_path, f"uploads/recipe/{uuid}.jpg")
-

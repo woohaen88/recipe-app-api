@@ -53,7 +53,7 @@ class RecipeSerializer(serializers.ModelSerializer):
             recipe.tags.add(tag_obj)
 
     def _get_or_create_ingredients(
-        self,        
+        self,
         ingredients,
         recipe,
     ):
@@ -95,6 +95,7 @@ class RecipeDetailSerialzier(RecipeSerializer):
 
     class Meta(RecipeSerializer.Meta):
         fields = RecipeSerializer.Meta.fields + ["description", "image"]
+
 
 class RecipeImageSerializer(serializers.ModelSerializer):
     """Serializer for uploading image to recipes"""

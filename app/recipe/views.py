@@ -12,7 +12,8 @@ from recipe.serializers import (
     RecipeDetailSerialzier,
     RecipeSerializer,
     TagSerializer,
-    IngredientSerializer, RecipeImageSerializer,
+    IngredientSerializer,
+    RecipeImageSerializer,
 )
 
 
