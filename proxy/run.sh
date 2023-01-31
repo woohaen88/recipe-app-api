@@ -2,4 +2,4 @@
 
 set -e
 
-envsubst < /etc/nginx/default.conf.tpl > /etc/nginx/nginx.conf
+envsubst < /etc/nginx/nginx.conf.defaults > /etc/nginx/nginx.conf
