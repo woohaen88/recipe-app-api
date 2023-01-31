@@ -1,8 +1,8 @@
 """
 Serializers for recipe APIs
 """
-from typing import List, Dict
-from typing_extensions import OrderedDict
+# from typing import List, Dict
+# from typing_extensions import OrderedDict
 
 from rest_framework import serializers
 from core.models import Recipe, Tag, Ingredient
@@ -57,8 +57,10 @@ class RecipeSerializer(serializers.ModelSerializer):
 
     def _get_or_create_ingredients(
         self,
-        ingredients: List[OrderedDict[str, str]],
-        recipe: List[OrderedDict[str, str]],
+        # ingredients: List[OrderedDict[str, str]],
+        # recipe: List[OrderedDict[str, str]],
+        ingredients,
+        recipe,
     ):
         auth_user = self.context.get("request").user
         for ingredient in ingredients:
