@@ -11,6 +11,16 @@ from recipe.serializers import IngredientSerializer
 
 
 INGREDIENT_URL = reverse("recipe:ingredient-list")
+RECIPES_URL = reverse("recipe:recipe-list")
+
+
+def detail_url(ingredient_id):
+    return reverse("recipe:ingredient-detail", args=[ingredient_id])
+
+
+def recipe_url(recipe_id):
+    """Create and return a recipe detail URL"""
+    return reverse("recipe:recipe-detail", args=[recipe_id])
 
 
 def create_user(**params):
@@ -102,3 +112,33 @@ class PrivateIngredientsApiTests(TestCase):
         # 인증된 객체의 유효성 검사
         self.assertEqual(res.data[0].get("name"), ingredient.name)
         self.assertEqual(res.data[0].get("id"), ingredient.id)
+
+    def test_update_ingredient(self):
+        """Test updating an ingredient."""
+
+        # 1. ingredient 객체를 만들고
+        ingredient = Ingredient.objects.create(user=self.user, name="Cilantro")
+
+        payload = {
+            "name": "Salt",
+        }
+
+        # 2. 새로운 객체로 patch 함
+        url = detail_url(ingredient.id)
+        res = self.client.patch(url, payload)
+        ingredient.refresh_from_db()
+
+        # 3. 그리고 이 객체가 payload와 같은지 검사
+        self.assertEqual(res.status_code, status.HTTP_200_OK)
+        self.assertEqual(ingredient.name, payload.get("name"))
+
+    def test_delete_ingredient(self):
+        """Test deleting an ingredient"""
+        ingredient = Ingredient.objects.create(user=self.user, name="Salt")
+
+        url = detail_url(ingredient.id)
+        res = self.client.delete(url)
+
+        self.assertEqual(res.status_code, status.HTTP_204_NO_CONTENT)
+        exists = Ingredient.objects.filter(user=self.user).exists()
+        self.assertFalse(exists)
