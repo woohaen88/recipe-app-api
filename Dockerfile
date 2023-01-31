@@ -31,7 +31,9 @@ RUN python -m venv /py && \
         django-user && \
     mkdir -p /vol/web/media/ && \
     chown -R django-user:django-user /vol && \
+    chown -R django-user:django-user /app && \
     chmod -R 755 /vol && \
+    chmod -R 755 /app && \
     chmod -R +x /scripts
 
 ENV PATH="/scripts:/py/bin:$PATH"
