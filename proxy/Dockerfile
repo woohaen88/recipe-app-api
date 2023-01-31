@@ -10,8 +10,7 @@ ENV APP_PORT=8000
 USER root
 
 RUN mkdir -p /vol/static && \
-    chmod 755 /vol/static && \
-    chmod +x /run.sh
+    chmod 755 /vol/static
 
 VOLUME /vol/static
 
