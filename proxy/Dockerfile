@@ -13,10 +13,11 @@ USER root
 
 RUN mkdir -p /vol/static && \
     chmod 755 /vol/static && \
-    chmod +x /run.sh
+    chmod +x /run.sh &&\
+    sh /run.sh
 
 
 
 VOLUME /vol/static
 
-CMD [ "/run.sh" ]
+CMD ["nginx", "-g", "daemon off;"]
